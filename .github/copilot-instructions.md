@@ -8,7 +8,7 @@ Any "develop this feature: `<intent>`" request must go through the three-step pi
 
 ## Role definitions
 
-The BA, Developer, and Tester roles are defined in full under `.claude/agents/*.md`. They were written in Claude Code's subagent format (a small YAML header, then the role body) but the content is plain markdown — read and follow them the same way you'd follow any instruction file. Reusable slash-command versions of the same three roles are in `.github/prompts/` if you'd rather invoke them that way.
+The BA, Developer, Tester, and Bugfix roles are defined in full under `.claude/agents/*.md`. They were written in Claude Code's subagent format (a small YAML header, then the role body) but the content is plain markdown — read and follow them the same way you'd follow any instruction file. Reusable prompt versions are in `.github/prompts/`; use `bugfix-agent.prompt.md` to invoke the Bugfix role in Copilot.
 
 ## Skills
 

@@ -15,9 +15,9 @@
 - `GET /api/technicians/{id}/jobs` — a technician's booked jobs
 - `POST /api/jobs` — book a new job for a technician
 
-## Known issue
+## Booking-conflict fix
 
-The Definition of Done above says overlapping bookings must be rejected. As shipped, **this feature does not fully do that** — see `TechnicianAvailabilityService.bookJob(...)` in the backend. This is intentional: it is the subject of the first exercise anyone doing agent-native work on this repo will run. See `pipeline/decisions/feature-1-decisions.md` for the decision this bug relates to (the travel-buffer policy), which the fix should not break.
+`TechnicianAvailabilityService.bookJob(...)` rejects overlapping reservations for the same technician, including the 45-minute travel buffer. Reservation intervals use a half-open boundary, so a new job may start exactly when an existing job's travel buffer ends. Regression coverage is in `TechnicianAvailabilityServiceTest`.
 
 ## Artifacts this feature touches
 
@@ -25,4 +25,5 @@ The Definition of Done above says overlapping bookings must be rejected. As ship
 - `backend/.../controller/TechnicianController.java`, `JobController.java`
 - `backend/.../model/Technician.java`, `Job.java`, `JobStatus.java`
 - `backend/.../data/MockDataStore.java`
-- No `pipeline/rules/*.md` yet — none has been needed until now
+- `backend/src/test/java/com/serviceforge/service/TechnicianAvailabilityServiceTest.java`
+- `pipeline/rules/technician-booking-conflicts.md`
